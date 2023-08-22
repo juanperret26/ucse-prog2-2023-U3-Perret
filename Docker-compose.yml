@@ -1,0 +1,23 @@
+version: "3"
+services:
+  api_zona_horaria:
+    build:
+      context: ./app1
+    ports:
+      - '4000:4000'
+    networks:
+        - mynetwork
+
+  verificacion_horario:
+    build:
+      context: ./app2
+    ports:
+      - '4001:4001'
+    depends_on:
+      - api_zona_horaria
+    networks:
+        - mynetwork
+
+networks:
+    mynetwork:
+      driver: bridge
